@@ -6,7 +6,7 @@ spring:
   application:
     name: event-service
   datasource:
-    url: jdbc:postgresql://sbs-dc-postgres:5432/sbsdatacentric
+    url: jdbc:postgresql://sbs-dc-postgres:5432/sbsdatacentric?currentSchema=sbs
     username: sbsapi
     password: YMIN^hC]6tllt+r
     type: com.zaxxer.hikari.HikariDataSource
