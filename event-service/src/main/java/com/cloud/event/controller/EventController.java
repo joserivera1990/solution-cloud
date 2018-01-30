@@ -17,10 +17,10 @@ public class EventController {
     @Autowired
     private EventsService eventsService;
 
-    @RequestMapping(value = "/events", method = RequestMethod.GET)
-    public ResponseEntity getAllEvents(){
+    @RequestMapping(value = "/events/user/{idUser}", method = RequestMethod.GET)
+    public ResponseEntity getAllEventsByUser(@PathVariable Integer idUser){
 
-        Option<List<EventDTO>> events = eventsService.getEvents();
+        Option<List<EventDTO>> events = eventsService.getEvents(idUser);
 
         if(events.isDefined() && !events.get().isEmpty()) {
             return new ResponseEntity<>(events.get(), HttpStatus.OK);
@@ -48,6 +48,12 @@ public class EventController {
     @RequestMapping(value = "/events", method = RequestMethod.POST)
     public ResponseEntity saveEvent(@RequestBody EventDTO eventDTO){
        Event event = eventsService.saveEvent(eventDTO);
+        return new ResponseEntity<>(event, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/events", method = RequestMethod.PUT)
+    public ResponseEntity updateEvent(@RequestBody EventDTO eventDTO){
+        Event event = eventsService.updateEvent(eventDTO);
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 }

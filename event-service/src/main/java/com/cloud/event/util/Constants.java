@@ -12,5 +12,4 @@ public class Constants {
     public static final String PATTERN_ISO_DATE_TIME = "yyyy-MM-dd'T'HH:mm:ssZ";
     public static final String PATTERN_DATE_TIME_YYYYMMDDHHMMSS = "yyyyMMddHHmmss";
     public static final String PATTERN_DATE_HOUR_YYYYMMDDHH = "yyyyMMddHH";
-
 }

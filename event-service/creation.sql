@@ -1,0 +1,36 @@
+select * from sbs.event;
+select * from sbs.user;
+
+
+drop table sbs.user;
+drop table sbs.EVENT;
+
+CREATE TABLE SBS.USER(
+    id_user                                 integer,
+    name                                    varchar(20),
+    last_name                                varchar(20),
+    email                                   varchar(10),
+    password                                 varchar(100),
+    register_date                              timestamp,
+    CONSTRAINT pk_id_user PRIMARY KEY(id_user)
+);
+
+CREATE TABLE sbs.EVENT(
+    id_event                                integer,
+    id_user                                 integer,
+    name                                    varchar(20),
+    category                                varchar(20),
+    place                                   varchar(10),
+    address                                 varchar(100),
+    ispresencial                              boolean,
+    date_start                              timestamp,
+    date_final                              timestamp,
+    date_register                           timestamp,
+    CONSTRAINT pk_id_event PRIMARY KEY(id_event),
+    CONSTRAINT fk_user FOREIGN KEY (id_user) REFERENCES SBS.USER (id_user)
+);
+GRANT SELECT, UPDATE, DELETE, INSERT ON SBS.EVENT TO SBSAPI;
+GRANT SELECT, UPDATE, DELETE, INSERT ON SBS.USER TO SBSAPI;
+
+INSERT INTO SBS.EVENT (id_event, id_user,name, category, place, address, presencial,date_start, date_final, date_register) 
+VALUES (14,12, 'JOSE RIVERA', '01', 'mandalay', 'address', true,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);

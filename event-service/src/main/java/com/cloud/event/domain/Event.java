@@ -1,27 +1,36 @@
 package com.cloud.event.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "EVENT1")
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "EVENT", schema = "SBS")
 public class Event implements Serializable {
     private static final long serialVersionUID = 1L;
+
+    public Event() {
+    }
+
+    public Event(Integer idEvent, User user, String name, String category, String place, String address, Date initialDate, Date finalDate, Boolean isPresencial, Date registerDate) {
+        this.idEvent = idEvent;
+        this.user = user;
+        this.name = name;
+        this.category = category;
+        this.place = place;
+        this.address = address;
+        this.initialDate = initialDate;
+        this.finalDate = finalDate;
+        this.isPresencial = isPresencial;
+        this.registerDate = registerDate;
+    }
 
     @Id
     @Column(name = "id_event", nullable = false, unique = true)
     private Integer idEvent;
+    @ManyToOne
+    @JoinColumn(name="id_user")
+    private User user;
     @Column(name = "name")
     private String name;
     @Column(name = "category")
@@ -36,7 +45,90 @@ public class Event implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date_final")
     private Date finalDate;
-    @Column(name = "presencial")
-    private Boolean isPresencial;
 
+    @Column(name = "ispresencial")
+    private Boolean isPresencial;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date_register")
+    private Date registerDate;
+
+    public Integer getIdEvent() {
+        return idEvent;
+    }
+
+    public void setIdEvent(Integer idEvent) {
+        this.idEvent = idEvent;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getInitialDate() {
+        return initialDate;
+    }
+
+    public void setInitialDate(Date initialDate) {
+        this.initialDate = initialDate;
+    }
+
+    public Date getFinalDate() {
+        return finalDate;
+    }
+
+    public void setFinalDate(Date finalDate) {
+        this.finalDate = finalDate;
+    }
+
+    public Date getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(Date registerDate) {
+        this.registerDate = registerDate;
+    }
+
+    public Boolean getPresencial() {
+        return isPresencial;
+    }
+
+    public void setPresencial(Boolean presencial) {
+        isPresencial = presencial;
+    }
 }

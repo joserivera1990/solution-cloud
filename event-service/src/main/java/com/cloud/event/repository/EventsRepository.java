@@ -1,8 +1,8 @@
 package com.cloud.event.repository;
 
 import com.cloud.event.domain.Event;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+
+import com.cloud.event.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 public interface EventsRepository extends JpaRepository<Event,String> {
 
-    List<Event> findAll();
+   List<Event> findByUserOrderByRegisterDateDesc(User user);
 
     Event findByIdEvent(Integer idEvent);
 
@@ -20,4 +20,5 @@ public interface EventsRepository extends JpaRepository<Event,String> {
     void removeByIdEvent(Integer idEvent);
 
     Event save(Event event);
+
 }
