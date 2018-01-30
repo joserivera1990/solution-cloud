@@ -28,22 +28,13 @@ providersApp.controller('LoginCtrl', ['$scope', '$rootScope', '$state', 'loginSe
 		profile:"Administrador"
 	};
 
-        var successCallback = function(){
-            //console.log(map["usuario"]);
-            //$scope.userData = map["usuario"];
-            //alert("Bienvenido de nuevo " + $scope.userData.primerNombre + " " + $scope.userData.primerApellido);
-            //$rootScope.$broadcast('USER_LOGGED_IN', $scope.userData);
-            $state.go("crear");
-        };
-
-
-	/*var successCallback = function(map){
-		console.log(map["usuario"]);
-		$scope.userData = map["usuario"];
-		alert("Bienvenido de nuevo " + $scope.userData.primerNombre + " " + $scope.userData.primerApellido);
-		$rootScope.$broadcast('USER_LOGGED_IN', $scope.userData);	
+	var successCallback = function(map){
+		//console.log(map["usuario"]);
+		//$scope.userData = map["usuario"];
+		//alert("Bienvenido de nuevo " + $scope.userData.primerNombre + " " + $scope.userData.primerApellido);
+		$rootScope.$broadcast('USER_LOGGED_IN', "$scope.userData");
 		$state.go("crear");
-	};*/
+	};
 	
 	var errorCallback = function(){
 		alert("Las credenciales que ha ingresado no son validas jajaja!");

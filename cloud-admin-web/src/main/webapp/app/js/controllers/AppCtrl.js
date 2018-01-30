@@ -6,7 +6,7 @@ providersApp.controller('AppCtrl', ['$scope', '$rootScope', 'userService',
 	
 	$rootScope.$on('USER_LOGGED_IN', function(event, userData){
 		$scope.isUserLoggedIn = true;
-		$scope.userData = userData;
+		$scope.userData = "Jose";
 	});
 	
 }]);
