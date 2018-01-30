@@ -32,6 +32,26 @@ public class EventsServiceImpl implements EventsService {
 
     }
 
+    @Override
+    public Option<EventDTO> getEventById(Integer idEvent) {
+        Event event =  repository.findByIdEvent(idEvent);
+        return Option.of(event)
+                .map(oneEvent -> mapper.map(oneEvent, EventDTO.class));
+    }
+
+    @Override
+    public Event saveEvent(EventDTO eventDTO) {
+
+        Event event = mapper.map(eventDTO, Event.class);
+
+        return  repository.save(event);
+    }
+
+    @Override
+    public void removeByIdEvent(Integer idEvent) {
+        repository.removeByIdEvent(idEvent);
+    }
+
     public EventsServiceImpl(EventsRepository repository) {
         this.repository = repository;
     }

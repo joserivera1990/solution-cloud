@@ -12,4 +12,10 @@ import java.util.List;
 public interface EventsService {
 
     Option<List<EventDTO>> getEvents();
+
+    Option<EventDTO> getEventById(Integer idEvent);
+
+    void removeByIdEvent(Integer idEvent);
+
+    Event saveEvent(EventDTO eventDTO);
 }

@@ -1,5 +1,6 @@
 package com.cloud.event.controller;
 
+import com.cloud.event.domain.Event;
 import com.cloud.event.dto.EventDTO;
 import com.cloud.event.service.EventsService;
 import io.vavr.control.Option;
@@ -16,10 +17,37 @@ public class EventController {
     @Autowired
     private EventsService eventsService;
 
-    @RequestMapping(value = "/{eventId}", method = RequestMethod.GET)
-    public ResponseEntity getAllEvents(@PathVariable String eventId){
+    @RequestMapping(value = "/events", method = RequestMethod.GET)
+    public ResponseEntity getAllEvents(){
 
         Option<List<EventDTO>> events = eventsService.getEvents();
-        return new ResponseEntity<>(events, HttpStatus.OK);
+
+        if(events.isDefined() && !events.get().isEmpty()) {
+            return new ResponseEntity<>(events.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @RequestMapping(value = "/events/{eventId}", method = RequestMethod.GET)
+    public ResponseEntity getEventById(@PathVariable Integer eventId){
+
+        Option<EventDTO> events = eventsService.getEventById(eventId);
+
+        if(events.isDefined()) {
+            return new ResponseEntity<>(events.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @RequestMapping(value = "/events/{eventId}", method = RequestMethod.DELETE)
+    public ResponseEntity removeEventById(@PathVariable Integer eventId){
+        eventsService.removeByIdEvent(eventId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/events", method = RequestMethod.POST)
+    public ResponseEntity saveEvent(@RequestBody EventDTO eventDTO){
+       Event event = eventsService.saveEvent(eventDTO);
+        return new ResponseEntity<>(event, HttpStatus.OK);
     }
 }

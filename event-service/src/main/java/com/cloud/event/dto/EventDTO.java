@@ -19,14 +19,14 @@ import java.util.Date;
 public class EventDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String idEvent;
+    private Integer idEvent;
     private String name;
     private String category;
     private String place;
     private String address;
-    @JsonFormat(pattern = Constants.PATTERN_ISO_DATE_TIME)
+    @JsonFormat(pattern = Constants.PATTERN_DATE)
     private Date initialDate;
-    @JsonFormat(pattern = Constants.PATTERN_ISO_DATE_TIME)
+    @JsonFormat(pattern = Constants.PATTERN_DATE)
     private Date finalDate;
     private Boolean isPresencial;
 

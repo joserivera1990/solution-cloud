@@ -4,13 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "EVENT")
+@Table(name = "EVENT1")
 @Data
 @Builder
 @NoArgsConstructor
@@ -19,8 +20,8 @@ public class Event implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "id_event")
-    private String idEvent;
+    @Column(name = "id_event", nullable = false, unique = true)
+    private Integer idEvent;
     @Column(name = "name")
     private String name;
     @Column(name = "category")
