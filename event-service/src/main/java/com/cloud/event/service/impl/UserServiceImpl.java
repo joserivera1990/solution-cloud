@@ -1,16 +1,15 @@
 package com.cloud.event.service.impl;
 
-import com.cloud.event.domain.Event;
 import com.cloud.event.domain.User;
-import com.cloud.event.dto.EventDTO;
 import com.cloud.event.dto.UserDTO;
-import com.cloud.event.repository.EventsRepository;
 import com.cloud.event.repository.UserRepository;
 import com.cloud.event.service.UserService;
 import io.vavr.control.Option;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,12 +27,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User saveUser(UserDTO userDTO) {
-        User user = mapper.map(userDTO, User.class);
-        return  repository.save(user);
+    public boolean saveUser(UserDTO userDTO) {
+        User user = buildUser(userDTO);
+        User userExist = repository.findByEmail(userDTO.getEmail());
+        if (userExist == null) {
+            repository.save(user);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public UserServiceImpl(UserRepository repository) {
         this.repository = repository;
     }
+
+    private User buildUser(UserDTO userDTO) {
+        return new User(userDTO.getName(), userDTO.getLastName(), userDTO.getEmail(), userDTO.getPassword(), new Date());
+
+    }
+
 }

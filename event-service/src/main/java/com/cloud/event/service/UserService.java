@@ -6,7 +6,7 @@ import io.vavr.control.Option;
 
 public interface UserService {
 
-    User saveUser(UserDTO userDTO);
+    boolean saveUser(UserDTO userDTO);
 
     Option<UserDTO> findUserByEmailAndPassword(String email, String password);
 }

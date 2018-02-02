@@ -27,6 +27,8 @@ public class Event implements Serializable {
 
     @Id
     @Column(name = "id_event", nullable = false, unique = true)
+    @SequenceGenerator(name="pk_sequence",sequenceName="event_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="pk_sequence")
     private Integer idEvent;
     @ManyToOne
     @JoinColumn(name="id_user")

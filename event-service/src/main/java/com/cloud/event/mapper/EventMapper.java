@@ -5,6 +5,8 @@ import com.cloud.event.domain.User;
 import com.cloud.event.dto.EventDTO;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component
 public class EventMapper {
 
@@ -12,7 +14,7 @@ public class EventMapper {
        return new Event(eventDTO.getIdEvent(), user, eventDTO.getName(),
                eventDTO.getCategory(), eventDTO.getPlace(), eventDTO.getAddress(),
                eventDTO.getInitialDate(), eventDTO.getFinalDate(),
-               eventDTO.getPresencial(), eventDTO.getRegisterDate());
+               eventDTO.getPresencial(), new Date());
     }
 
     public Event buildEventUpdate(Event event, EventDTO eventDTO) {

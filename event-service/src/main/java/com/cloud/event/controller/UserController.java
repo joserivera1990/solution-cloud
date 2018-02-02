@@ -29,8 +29,12 @@ public class UserController {
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public ResponseEntity saveEvent(@RequestBody UserDTO userDTO){
-        User user = userService.saveUser(userDTO);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        boolean isCreated = userService.saveUser(userDTO);
+        if (isCreated) {
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(false, HttpStatus.OK);
+        }
     }
 
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
