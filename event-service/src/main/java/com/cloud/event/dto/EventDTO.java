@@ -18,9 +18,9 @@ public class EventDTO implements Serializable {
     private String category;
     private String place;
     private String address;
-    @JsonFormat(pattern = Constants.PATTERN_DATE_TIME_YYYYMMDDHHMMSS)
+    @JsonFormat(pattern = Constants.PATTERN_DATE)
     private Date initialDate;
-    @JsonFormat(pattern = Constants.PATTERN_DATE_TIME_YYYYMMDDHHMMSS)
+    @JsonFormat(pattern = Constants.PATTERN_DATE)
     private Date finalDate;
     @JsonProperty(value="isPresencial")
     private Boolean isPresencial;

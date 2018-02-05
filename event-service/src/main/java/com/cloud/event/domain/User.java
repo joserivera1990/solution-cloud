@@ -14,9 +14,7 @@ import java.util.Date;
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public User(String name, String lastName, String email, String password, Date registerDate) {
-        this.name = name;
-        this.lastName = lastName;
+    public User(String email, String password, Date registerDate) {
         this.email = email;
         this.password = password;
         this.registerDate = registerDate;
@@ -29,10 +27,6 @@ public class User implements Serializable {
     @SequenceGenerator(name="pk_sequence",sequenceName="user_id_seq", allocationSize=1)
     @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="pk_sequence")
     private Integer idUser;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "last_name")
-    private String lastName;
     @Column(name = "email")
     private String email;
     @Column(name = "password")
@@ -47,22 +41,6 @@ public class User implements Serializable {
 
     public void setIdUser(Integer idUser) {
         this.idUser = idUser;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {

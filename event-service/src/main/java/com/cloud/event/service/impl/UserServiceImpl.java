@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private User buildUser(UserDTO userDTO) {
-        return new User(userDTO.getName(), userDTO.getLastName(), userDTO.getEmail(), userDTO.getPassword(), new Date());
+        return new User(userDTO.getEmail().toUpperCase(), userDTO.getPassword(), new Date());
 
     }
 

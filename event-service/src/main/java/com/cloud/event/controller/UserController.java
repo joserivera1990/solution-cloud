@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public ResponseEntity saveEvent(@RequestBody UserDTO userDTO){
+    public ResponseEntity saveUser(@RequestBody UserDTO userDTO){
         boolean isCreated = userService.saveUser(userDTO);
         if (isCreated) {
             return new ResponseEntity<>(true, HttpStatus.OK);
@@ -40,7 +40,7 @@ public class UserController {
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
     public ResponseEntity findUserByEmailAndPassword(@RequestBody UserDTO userDTO){
 
-        Option<UserDTO> user = userService.findUserByEmailAndPassword(userDTO.getEmail(), userDTO.getPassword());
+        Option<UserDTO> user = userService.findUserByEmailAndPassword(userDTO.getEmail().toUpperCase(), userDTO.getPassword());
         if(user.isDefined()) {
             return new ResponseEntity<>(user.get(), HttpStatus.OK);
         }

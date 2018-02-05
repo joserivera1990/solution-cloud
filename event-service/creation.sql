@@ -7,20 +7,21 @@ drop table sbs.EVENT;
 
 CREATE TABLE SBS.USER(
     id_user                                 integer,
-    name                                    varchar(20),
-    last_name                                varchar(20),
-    email                                   varchar(10),
+    email                                   varchar(30),
     password                                 varchar(100),
     register_date                              timestamp,
     CONSTRAINT pk_id_user PRIMARY KEY(id_user)
 );
+INSERT INTO SBS.USER (id_user, email,password, register_date)
+VALUES (14,'JOSE', '1',CURRENT_TIMESTAMP);
+
 
 CREATE TABLE sbs.EVENT(
     id_event                                integer,
     id_user                                 integer,
-    name                                    varchar(20),
-    category                                varchar(20),
-    place                                   varchar(10),
+    name                                    varchar(30),
+    category                                varchar(30),
+    place                                   varchar(30),
     address                                 varchar(100),
     ispresencial                              boolean,
     date_start                              timestamp,
